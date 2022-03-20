@@ -205,4 +205,4 @@ function modalValidationDisplay(){
   confirmBtn.className = "btn-confirm";
   confirmBtn.innerHTML = "Fermer";
   confirmBtn.addEventListener("click", closeModal);
-}
+};

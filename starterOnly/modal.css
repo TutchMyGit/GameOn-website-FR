@@ -548,7 +548,7 @@ footer {
     text-align: left;
   }
   .hero-text {
-    width: unset;
+    width: 90%;
     font-size: 1rem;
   }
   .hero-img img {
