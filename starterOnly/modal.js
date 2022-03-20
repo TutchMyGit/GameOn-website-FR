@@ -21,23 +21,19 @@ function launchModal() {
   modalbg.style.display = "block";
 }
 
-// Close modal form
+// function for closing modal form
 closeModalBtn.addEventListener("click", closeModal);
 
 function closeModal() {
   modalbg.style.display = "none";
 }
 
-// REGEX check
+// List of const REGEX check used in checking function
 const regLetters = /^[a-zA-Zéèîï][a-zéèêàçîï]+([-'\s][a-zA-Zéèîï][a-zéèêàçîï]+)?/;
 const regMail = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
 const regNumbers = /^[0-9]/;
 const regDate = /^(19|20)\d{2}-(0[1-9]|1[0-2])-(0[1-9]|[1-2]\d|3[01])$/;
 
-
-// Call prenom and famille
-const prenom = document.getElementById("first");
-const famille = document.getElementById("last");
 
 // Function checking Name
 function checkInputName(input) {
@@ -49,9 +45,6 @@ function checkInputName(input) {
 };
 
 
-// Call Mail
-const mail = document.getElementById("email");
-
 // Function checking Mail
 function checkInputMail(input) {
   if (input.value.length > 0 && regMail.test(input.value)) {
@@ -61,9 +54,6 @@ function checkInputMail(input) {
   }
 };
 
-
-// Call Naissance
-const naissance = document.getElementById("birthdate");
 
 // Function checking Naissance
 function checkInputNaissance(input) {
@@ -75,9 +65,6 @@ function checkInputNaissance(input) {
 };
 
 
-// Call concours
-const concours = document.getElementById("quantity");
-
 // Function checking concours
 function checkInputConcours(input) {
   if (input.value.length > 0 && regNumbers.test(input.value)) {
@@ -87,9 +74,6 @@ function checkInputConcours(input) {
   }
 };
 
-
-// Call radio
-const radio = document.querySelectorAll("input[type=radio]");
 
 // Function checking radio
 function checkInputRadio(input) {
@@ -101,9 +85,6 @@ function checkInputRadio(input) {
   return false
 };
 
-
-// Call condition-general
-const conditionGeneral = document.getElementById("checkbox1");
 
 // Function checking condition-general
 function checkInputCondition(input) {
@@ -146,6 +127,14 @@ const submitBtn = document.querySelector(".btn-submit");
 // Validation
 submitBtn.addEventListener("click", function(event) {
   event.preventDefault();
+  // List of const for function
+  const prenom = document.getElementById("first");
+  const famille = document.getElementById("last");
+  const mail = document.getElementById("email");
+  const naissance = document.getElementById("birthdate");
+  const concours = document.getElementById("quantity");
+  const radio = document.querySelectorAll("input[type=radio]");
+  const conditionGeneral = document.getElementById("checkbox1");
   if (!checkInputName(prenom) && !spanExist("firstName")) {
     document.getElementById("first").parentElement.appendChild(checkError("Veuillez entrer 2 caractères ou plus pour le champ du prenom.", "firstName"))
   } else if (checkInputName(prenom)){
@@ -190,7 +179,6 @@ submitBtn.addEventListener("click", function(event) {
 });
 
 // Display Validation Message and button closing modal
-
 const formBody = document.getElementsByName("reserve");
 
 function modalValidationDisplay(){
