@@ -103,6 +103,7 @@ function checkInputRadio(input) {
   return false
 };
 
+
 // Call condition-general
 const conditionGeneral = document.getElementById("checkbox1");
 
@@ -186,4 +187,4 @@ function validate() {
   else {
     alert("Merci ! Votre réservation a été reçue.")
   }
-  };
+};
