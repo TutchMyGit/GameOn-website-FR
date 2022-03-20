@@ -28,8 +28,6 @@ function closeModal() {
   modalbg.style.display = "none";
 }
 
-// Submit check
-
 // REGEX check
 const regLetters = /^[a-zA-Zéèîï][a-zéèêàçîï]+([-'\s][a-zA-Zéèîï][a-zéèêàçîï]+)?/;
 const regMail = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
@@ -143,9 +141,11 @@ function deleteCheckError(spanToDelete) {
    spanToDelete.remove()
 };
 
+const submitBtn = document.querySelector(".btn-submit");
 
 // Validation
-function validate() {
+submitBtn.addEventListener("click", function(event) {
+  event.preventDefault();
   if (!checkInputName(prenom) && !spanExist("firstName")) {
     document.getElementById("first").parentElement.appendChild(checkError("Veuillez entrer 2 caractères ou plus pour le champ du prenom.", "firstName"))
   } else if (checkInputName(prenom)){
@@ -185,6 +185,24 @@ function validate() {
     return false;
   }
   else {
-    alert("Merci ! Votre réservation a été reçue.")
-  }
-};
+    modalValidationDisplay();
+}
+});
+
+// Display Validation Message and button closing modal
+
+const formBody = document.getElementsByName("reserve");
+
+function modalValidationDisplay(){
+  formBody[0].style.display = "none";
+  const modalBody = document.getElementById("modal-body");
+  const confirmMsg = document.createElement("div");
+  const confirmBtn = document.createElement("div");
+  modalBody.appendChild(confirmMsg);
+  modalBody.appendChild(confirmBtn);
+  confirmMsg.setAttribute("class", "confirmation");
+  confirmMsg.innerHTML = "Merci !<br/>Votre réservation a été reçue.";
+  confirmBtn.className = "btn-confirm";
+  confirmBtn.innerHTML = "Fermer";
+  confirmBtn.addEventListener("click", closeModal);
+}
