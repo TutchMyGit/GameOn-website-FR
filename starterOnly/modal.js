@@ -55,9 +55,26 @@ function checkInputMail(input) {
 };
 
 
+// Setup max date as today minus 3 years
+const naissance = document.getElementById("birthdate");
+let today = new Date();
+let days = today.getDate();
+let months = today.getMonth()+1;
+let years = today.getFullYear();
+
+if (days<10){
+  days="0"+days
+}
+if (months<10){
+  months="0"+months
+}
+
+today = years-3+"-"+months+"-"+days;
+document.getElementById("birthdate").setAttribute("max", today);
+
 // Function checking Naissance
 function checkInputNaissance(input) {
-  if (input.value.length > 0 && regDate.test(input.value)) {
+  if (input.value.length > 0 && regDate.test(input.value) && input.value < today) {
     return true;
   } else {
     return false;
@@ -82,7 +99,7 @@ function checkInputRadio(input) {
       return true;
     }
   }
-  return false
+  return false;
 };
 
 
@@ -124,14 +141,13 @@ function deleteCheckError(spanToDelete) {
 
 const submitBtn = document.querySelector(".btn-submit");
 
-// Validation
+// Validation function and submit listener so button doesnt refresh page
 submitBtn.addEventListener("click", function(event) {
   event.preventDefault();
-  // List of const for function
+  // List of const for function put here so it doesnt use memory until button is clicked
   const prenom = document.getElementById("first");
   const famille = document.getElementById("last");
   const mail = document.getElementById("email");
-  const naissance = document.getElementById("birthdate");
   const concours = document.getElementById("quantity");
   const radio = document.querySelectorAll("input[type=radio]");
   const conditionGeneral = document.getElementById("checkbox1");
@@ -194,3 +210,5 @@ function modalValidationDisplay(){
   confirmBtn.innerHTML = "Fermer";
   confirmBtn.addEventListener("click", closeModal);
 };
+
+
