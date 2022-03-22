@@ -103,7 +103,7 @@ function checkInputRadio(input) {
 };
 
 
-// Function checking condition-general
+// Function checking condition-general //
 function checkInputCondition(input) {
   if (input.checked) {
     return true;
