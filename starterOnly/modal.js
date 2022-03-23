@@ -113,7 +113,7 @@ function checkInputCondition(input) {
 };
 
 
-// Error function
+// Function create message
 function checkError(text, id) {
   let span = document.createElement("span")
   span.innerText = text
@@ -139,6 +139,11 @@ function deleteCheckError(spanToDelete) {
    spanToDelete.remove()
 };
 
+// Function Add Error message
+function addErrorMessage(input, text, id) {
+  document.getElementById(input).parentElement.appendChild(checkError(text, id))
+};
+
 const submitBtn = document.querySelector(".btn-submit");
 
 // Validation function and submit listener so button doesnt refresh page
@@ -152,37 +157,37 @@ submitBtn.addEventListener("click", function(event) {
   const radio = document.querySelectorAll("input[type=radio]");
   const conditionGeneral = document.getElementById("checkbox1");
   if (!checkInputName(prenom) && !spanExist("firstName")) {
-    document.getElementById("first").parentElement.appendChild(checkError("Veuillez entrer 2 caractères ou plus pour le champ du prenom.", "firstName"))
+    addErrorMessage("first", "Veuillez entrer 2 caractères ou plus pour le champ du prenom.", "firstName")
   } else if (checkInputName(prenom)){
     deleteCheckError(document.getElementById("firstName"))
   }
   if (!checkInputName(famille) && !spanExist("lastName")) {
-    document.getElementById("last").parentElement.appendChild(checkError("Veuillez entrer 2 caractères ou plus pour le champ du nom.", "lastName"))
+    addErrorMessage("last", "Veuillez entrer 2 caractères ou plus pour le champ du nom.", "lastName")
   } else if (checkInputName(famille)){
     deleteCheckError(document.getElementById("lastName"))
   }
   if (!checkInputMail(mail) && !spanExist("mail")) {
-    document.getElementById("email").parentElement.appendChild(checkError("Veuillez entrer une adresse mail valide.", "mail"))
+    addErrorMessage("email", "Veuillez entrer une adresse mail valide.", "mail")
   } else if (checkInputMail(mail)){
     deleteCheckError(document.getElementById("mail"))
   }
   if (!checkInputNaissance(naissance) && !spanExist("dateNaissance")) {
-    document.getElementById("birthdate").parentElement.appendChild(checkError("Vous devez entrer votre date de naissance.", "dateNaissance"))
+    addErrorMessage("birthdate", "Vous devez entrer votre date de naissance.", "dateNaissance")
   } else if (checkInputNaissance(naissance)) {
     deleteCheckError(document.getElementById("dateNaissance"))
   }
   if (!checkInputConcours(concours) && !spanExist("nombreConcours")) {
-    document.getElementById("quantity").parentElement.appendChild(checkError("Vous devez entrer une valeur", "nombreConcours"))
+    addErrorMessage("quantity", "Vous devez entrer une valeur", "nombreConcours")
   } else if (checkInputConcours(concours)) {
     deleteCheckError(document.getElementById("nombreConcours"))
   }
   if (!checkInputRadio(radio)  && !spanExist("optionTournoi")) {
-    document.getElementsByClassName("checkbox-input")[0].parentElement.appendChild(checkError("Vous devez choisir une option.", "optionTournoi"))
+    document.getElementsByClassName("checkbox-input")[0].parentElement.appendChild(checkError("Vous devez choisir une option.", "optionTournoi")) //Doesnt use function because only needed once
   } else if (checkInputRadio(radio)){
     deleteCheckError(document.getElementById("optionTournoi"))
   }
   if (!checkInputCondition(conditionGeneral) && !spanExist("validationCondition")) {
-    document.getElementById("checkbox1").parentElement.appendChild(checkError("Vous devez vérifier que vous acceptez les termes et conditions.", "validationCondition"))
+    addErrorMessage("checkbox1", "Vous devez vérifier que vous acceptez les termes et conditions.", "validationCondition")
   } else if (checkInputCondition(conditionGeneral)){
     deleteCheckError(document.getElementById("validationCondition"))
   }
